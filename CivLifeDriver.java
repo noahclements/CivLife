@@ -53,6 +53,7 @@ public class CivLifeDriver {
 		System.out.println(wood.getResourceName() + ": " + wood.getResourceAmount());
 		System.out.println(stone.getResourceName() + ": " + stone.getResourceAmount());
 		System.out.println(food.getResourceName() + ": " + food.getResourceAmount());
+		System.out.println("(B)ack");
 		
 		while(!done) {
 			userViewInput = viewScan.nextLine();
