@@ -5,11 +5,10 @@ import java.util.Scanner;
 public class CivLifeDriver {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		Resource wood = new Resource("WOOD",100);
-		Resource stone = new Resource("STONE"100);
+		Resource stone = new Resource("STONE",100);
 		Resource food = new Resource("FOOD",100);
-		//int month = 0;
 		
 		menu(wood,stone,food);
 		
@@ -17,7 +16,7 @@ public class CivLifeDriver {
 
 	}
 	
-	public static void menu(Resource wood,stone,food ) {
+	public static void menu(Resource wood, Resource stone, Resource food) {
 		
 		Scanner menuScan = new Scanner(System.in);
 		String userInput;
@@ -33,7 +32,7 @@ public class CivLifeDriver {
 			userInput = menuScan.nextLine();
 			
 			if(userInput.equals("V")) {
-				viewResources();
+				viewResources(wood,stone,food);
 				done = true;
 			}
 			else if(userInput.equals("G")) {
@@ -44,7 +43,7 @@ public class CivLifeDriver {
 		
 	}
 	
-	public void viewResources(Resource wood,stone,food) {
+	public static void viewResources(Resource wood, Resource stone, Resource food) {
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -65,7 +64,7 @@ public class CivLifeDriver {
 		}
 	}
 		
-	public void gatherResourceMenu(Resource wood,stone,food) {
+	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food) {
 			
 		Scanner gatherScan = new Scanner(System.in);
 		String gatherAnswer;
@@ -79,21 +78,21 @@ public class CivLifeDriver {
 	
 		while(!properAnswer) {
 			
-			gatherAnswer = viewScan.nextLine();
+			gatherAnswer = gatherScan.nextLine();
 				
 			if(gatherAnswer.equals("1")) {
 					
-				gatherResource(wood);
+				wood.gatherResource(wood);
 				properAnswer = true;
 			}
 			else if(gatherAnswer.equals("2")) {
 					
-				gatherResource(stone);
+				stone.gatherResource(stone);
 				properAnswer = true;
 			}
 			else if(gatherAnswer.equals("3")) {
 					
-				gatherResource(food);
+				food.gatherResource(food);
 				properAnswer = true;
 			}
 			else {
