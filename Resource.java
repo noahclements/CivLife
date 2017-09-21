@@ -21,7 +21,7 @@ public class Resource {
 		int gatheredAmount = 0;	
 		gatheredAmount = (int)(Math.random()*25 + 1);
 		
-		other.getResourceAmount() += gatheredAmount;
+		other.resourceAmount += gatheredAmount;
 	}
 }
 
