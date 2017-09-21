@@ -1,7 +1,7 @@
 //Class that creates a resource object
 public class Resource {
 	private String resourceName;
-	private int resourceAmount = 0;
+	private int resourceAmount;
 	
 	//Constructor method, accepts the resource name and the current amount of that resource
 	public Resource(String resourceNameIn, int resourceAmountIn){
