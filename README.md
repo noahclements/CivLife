@@ -1,2 +1,2 @@
 # CivLife
-textbase game where you conquer the world
+A textbase game where you conquer the world!!
