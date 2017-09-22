@@ -1,29 +1,30 @@
-package civLife;
-
 import java.util.Scanner;
 
 public class CivLifeDriver {
-
 	public static void main(String[] args) {
 
 		Resource wood = new Resource("WOOD",100);
 		Resource stone = new Resource("STONE",100);
 		Resource food = new Resource("FOOD",100);
 		
-		menu(wood,stone,food);
+		Scanner civNameScan = new Scanner(System.in);
+		String civNameInput;
 		
+		System.out.println("Welcome to our text based civilization game!!");
+		System.out.println("To begin enter your name");
+		civNameInput = civNameScan.nextLine();
 		
-
+		menu(wood,stone,food,civNameInput);
 	}
 	
-	public static void menu(Resource wood, Resource stone, Resource food) {
+	public static void menu(Resource wood, Resource stone, Resource food, String civNameInput) {
 		
 		Scanner menuScan = new Scanner(System.in);
 		String userInput;
 		boolean done = false;
-		
-		System.out.println("       MENU        ");
-		System.out.println("-------------------");
+			
+		System.out.println("       MENU              " + civNameInput + "s" + " civilization");
+		System.out.println("-----------------------------------------------");
 		System.out.println("(V)iew Rescources");
 		System.out.println("(G)ather Resources");
 		
@@ -31,19 +32,18 @@ public class CivLifeDriver {
 		{
 			userInput = menuScan.nextLine();
 			
-			if(userInput.equals("V")) {
-				viewResources(wood,stone,food);
+			if(userInput.equals("V")||userInput.equals("v")) {
+				viewResources(wood,stone,food,civNameInput);
 				done = true;
 			}
-			else if(userInput.equals("G")) {
-				gatherResourceMenu(wood,stone,food);
+			else if(userInput.equals("G")||userInput.equals("g")) {
+				gatherResourceMenu(wood,stone,food,civNameInput);
 				done = true;
 			}
-		}
-		
+		}	
 	}
 	
-	public static void viewResources(Resource wood, Resource stone, Resource food) {
+	public static void viewResources(Resource wood, Resource stone, Resource food, String civNameInput) {
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -58,14 +58,14 @@ public class CivLifeDriver {
 		while(!done) {
 			userViewInput = viewScan.nextLine();
 			
-			if(userViewInput.equals("B")) {
-				menu(wood,stone,food);
+			if(userViewInput.equals("B")||userViewInput.equals("b")) {
+				menu(wood,stone,food,civNameInput);
 				done = true;
 			}
 		}
 	}
 		
-	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food) {
+	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food, String civNameInput) {
 			
 		Scanner gatherScan = new Scanner(System.in);
 		String gatherAnswer;
@@ -83,17 +83,23 @@ public class CivLifeDriver {
 				
 			if(gatherAnswer.equals("1")) {
 					
-				wood.gatherResource(wood);
+				System.out.println(civNameInput +", wood has been gathered! You gained: " + wood.gatherResource(wood));
+				System.out.println("Current amount of wood: " + wood.getResourceAmount());
+				System.out.println();
 				properAnswer = true;
 			}
 			else if(gatherAnswer.equals("2")) {
 					
-				stone.gatherResource(stone);
+				System.out.println(civNameInput +", stone has been successfully gathered! You gained: " + stone.gatherResource(stone));
+				System.out.println("Current amount of stone: " + stone.getResourceAmount());
+				System.out.println();
 				properAnswer = true;
 			}
 			else if(gatherAnswer.equals("3")) {
 					
-				food.gatherResource(food);
+				System.out.println(civNameInput +", food has been found and gathered! You gained: " + food.gatherResource(food));
+				System.out.println("Current amount of food: " + food.getResourceAmount());
+				System.out.println();
 				properAnswer = true;
 			}
 			else {
@@ -101,7 +107,6 @@ public class CivLifeDriver {
 			}
 		}
 			
-		menu(wood,stone,food);
+		menu(wood,stone,food, civNameInput);
 	}
-
 }
