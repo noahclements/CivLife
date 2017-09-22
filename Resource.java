@@ -16,10 +16,10 @@ public class Resource {
 	public int getResourceAmount(){
 		return resourceAmount;
 	}
-	//Gather more of that resource, them add it to the current total
+	//Gather more of that resource, then add it to the current total, returns the gathered amount
 	public int gatherResource(Resource other){
 		int gatheredAmount = 0;	
-		gatheredAmount = (int)(Math.random()*25 + 1);
+		gatheredAmount = (int)(Math.random()* (50-30)) + 30;
 		other.resourceAmount += gatheredAmount;
 		return gatheredAmount;
 	}
