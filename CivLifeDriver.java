@@ -30,6 +30,7 @@ public class CivLifeDriver {
 				validName = true;
 		}
 		//displays the main menu
+		System.out.println();
 		menu(wood,stone,food,civNameInput,month,year);
 		
 	}//end main
@@ -53,10 +54,12 @@ public class CivLifeDriver {
 			userInput = menuScan.nextLine();
 			
 			if(userInput.equals("V")||userInput.equals("v")) {
+				System.out.println();
 				viewResources(wood,stone,food,civNameInput,month,year);
 				done = true;
 			}
 			else if(userInput.equals("G")||userInput.equals("g")) {
+				System.out.println();
 				gatherResourceMenu(wood,stone,food,civNameInput,month,year);
 				done = true;
 			}
@@ -82,6 +85,7 @@ public class CivLifeDriver {
 			userViewInput = viewScan.nextLine();
 			
 			if(userViewInput.equals("B")||userViewInput.equals("b")) {
+				System.out.println();
 				menu(wood,stone,food,civNameInput,month,year);
 				done = true;
 			}
@@ -108,6 +112,7 @@ public class CivLifeDriver {
 			
 			//if user wants to gather wood
 			if(gatherAnswer.equals("1")) {
+				System.out.println();
 				System.out.println("Gathering wood...");
 				System.out.println();
 				try {
@@ -131,6 +136,7 @@ public class CivLifeDriver {
 			
 			//if the user wants to gather stone
 			else if(gatherAnswer.equals("2")) {
+				System.out.println();
 				System.out.println("Gathering stone...");
 				System.out.println();
 				try {
@@ -154,6 +160,7 @@ public class CivLifeDriver {
 			
 			//if the user wants to gather food
 			else if(gatherAnswer.equals("3")) {
+				System.out.println();
 				System.out.println("Finding and collecting food...");
 				System.out.println();
 				try {
@@ -180,7 +187,7 @@ public class CivLifeDriver {
 				System.out.println("Please enter a valid input");
 			}
 		}
-			
+		System.out.println();	
 		menu(wood,stone,food, civNameInput, month, year);
 	}//end gatherResource menu
 }//end class
