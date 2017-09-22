@@ -1,11 +1,11 @@
 //Creates a personType object with a name and population
 public class PersonType {
 	private String name;
-	private int typePopulation;
+	private int population;
 	
 	public PersonType(String nameIn, int popIn){
 		name = nameIn;
-		typePopulation = popIn;
+		population = popIn;
 	}
 	
 	public String getName(){
@@ -13,6 +13,10 @@ public class PersonType {
 	}
 	
 	public int getTypePopulation(){
-		return typePopulation;
+		return population;
+	}
+	
+	public void increasePopulation(int amountIncrease){
+		population += amountIncrease;
 	}
 }
