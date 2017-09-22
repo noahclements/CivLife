@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.concurrent.*;
 public class CivLifeDriver {
 	public static void main(String[] args) {
 		
@@ -105,7 +105,14 @@ public class CivLifeDriver {
 			
 			//if user wants to gather wood
 			if(gatherAnswer.equals("1")) {
-					
+				System.out.println("Gathering wood...");
+				System.out.println();
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
 				System.out.println(civNameInput +", wood has been gathered! You gained: " + wood.gatherResource(wood));
 				System.out.println("Current amount of wood: " + wood.getResourceAmount());
 				System.out.println();
@@ -114,7 +121,14 @@ public class CivLifeDriver {
 			
 			//if the user wants to gather stone
 			else if(gatherAnswer.equals("2")) {
-					
+				System.out.println("Gathering stone...");
+				System.out.println();
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
 				System.out.println(civNameInput +", stone has been successfully gathered! You gained: " + stone.gatherResource(stone));
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
 				System.out.println();
@@ -123,7 +137,14 @@ public class CivLifeDriver {
 			
 			//if the user wants to gather food
 			else if(gatherAnswer.equals("3")) {
-					
+				System.out.println("Finding and collecting food...");
+				System.out.println();
+				try {
+					TimeUnit.SECONDS.sleep(2);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
 				System.out.println(civNameInput +", food has been found and gathered! You gained: " + food.gatherResource(food));
 				System.out.println("Current amount of food: " + food.getResourceAmount());
 				System.out.println();
