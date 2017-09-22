@@ -8,6 +8,10 @@ public class CivLifeDriver {
 		Resource stone = new Resource("STONE",100);
 		Resource food = new Resource("FOOD",100);
 		
+		PersonType farmer = new PersonType("FARMER", 20);
+		PersonType fighter = new PersonType("FIGHTER", 0);		
+		PersonType royalty = new PersonType("ROYALTY", 0);
+		
 		int month = 0;
 		int year = 0;
 		
@@ -31,12 +35,12 @@ public class CivLifeDriver {
 		}
 		//displays the main menu
 		System.out.println();
-		menu(wood,stone,food,civNameInput,month,year);
+		menu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
 		
 	}//end main
 	
 	//main menu method
-	public static void menu(Resource wood, Resource stone, Resource food, String civNameInput, int month, int year) {
+	public static void menu(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter, PersonType royalty, String civNameInput, int month, int year) {
 		
 		Scanner menuScan = new Scanner(System.in);
 		String userInput;
@@ -47,6 +51,7 @@ public class CivLifeDriver {
 		System.out.println("-----------------------------------------------");
 		System.out.println("(V)iew Rescources		 Y: " + year + "  " + "M: " + month);
 		System.out.println("(G)ather Resources");
+		System.out.println("(P)opulation");
 		
 		//User decides whether they wan to view or gather resources
 		while(!done)
@@ -55,19 +60,24 @@ public class CivLifeDriver {
 			
 			if(userInput.equals("V")||userInput.equals("v")) {
 				System.out.println();
-				viewResources(wood,stone,food,civNameInput,month,year);
+				viewResources(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
 				done = true;
 			}
 			else if(userInput.equals("G")||userInput.equals("g")) {
 				System.out.println();
-				gatherResourceMenu(wood,stone,food,civNameInput,month,year);
+				gatherResourceMenu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
 				done = true;
+			}
+			else if(userInput.equals("P")||userInput.equals("p")){
+				System.out.println();
+				viewPopulation(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				done = true;				
 			}
 		}	
 	}//end menu
 	
 	//View resources menu method
-	public static void viewResources(Resource wood, Resource stone, Resource food, String civNameInput, int month, int year) {
+	public static void viewResources(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter,  PersonType royalty, String civNameInput, int month, int year) {
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -86,14 +96,14 @@ public class CivLifeDriver {
 			
 			if(userViewInput.equals("B")||userViewInput.equals("b")) {
 				System.out.println();
-				menu(wood,stone,food,civNameInput,month,year);
+				menu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
 				done = true;
 			}
 		}
 	}//end viewResource menu
 	
 	//gather resources menu method
-	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food, String civNameInput, int month, int year) {
+	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter, PersonType royalty, String civNameInput, int month, int year) {
 			
 		Scanner gatherScan = new Scanner(System.in);
 		String gatherAnswer;
@@ -188,6 +198,32 @@ public class CivLifeDriver {
 			}
 		}
 		System.out.println();	
-		menu(wood,stone,food, civNameInput, month, year);
+		menu(wood,stone,food, farmer, fighter, royalty, civNameInput, month, year);
 	}//end gatherResource menu
+	
+	public static void viewPopulation(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter, PersonType royalty, String civNameInput, int month, int year){
+		Scanner viewPopScan = new Scanner(System.in);
+		String userInput;
+		boolean done = false;
+		
+		
+		System.out.println("CURRENT POPULATION");
+		System.out.println("------------------");
+		System.out.println("FARMERS: " + farmer.getTypePopulation());
+		System.out.println("FIGHTERS: " + fighter.getTypePopulation());
+		System.out.println("ROYALTY: " + royalty.getTypePopulation());
+		System.out.println("(B)ack");
+		
+		//If the user wants to go back to main menu
+		while(!done) {
+			userInput = viewPopScan.nextLine();
+			
+			if(userInput.equals("B")||userInput.equals("b")) {
+				System.out.println();
+				menu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				done = true;
+			}
+		}		
+	}
 }//end class
+
