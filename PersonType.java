@@ -19,4 +19,8 @@ public class PersonType {
 	public void increasePopulation(int amountIncrease){
 		population += amountIncrease;
 	}
+	
+	public void decreasePopulation(int amountDecrease){
+		population -= amountDecrease;
+	}
 }
