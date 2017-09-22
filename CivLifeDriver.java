@@ -8,6 +8,9 @@ public class CivLifeDriver {
 		Resource stone = new Resource("STONE",100);
 		Resource food = new Resource("FOOD",100);
 		
+		int month = 0;
+		int year = 0;
+		
 		Scanner civNameScan = new Scanner(System.in);
 		String civNameInput;
 		boolean validName = false;
@@ -19,7 +22,7 @@ public class CivLifeDriver {
 		
 		//check if name is valid
 		while(!validName){
-			if(civNameInput.equals("")||civNameInput.length()<2){
+			if(civNameInput.equals("")||civNameInput.length()<2||civNameInput.length()>12){
 				System.out.println("Please enter a valid name");
 				civNameInput = civNameScan.nextLine();
 			}
@@ -27,12 +30,12 @@ public class CivLifeDriver {
 				validName = true;
 		}
 		//displays the main menu
-		menu(wood,stone,food,civNameInput);
+		menu(wood,stone,food,civNameInput,month,year);
 		
 	}//end main
 	
 	//main menu method
-	public static void menu(Resource wood, Resource stone, Resource food, String civNameInput) {
+	public static void menu(Resource wood, Resource stone, Resource food, String civNameInput, int month, int year) {
 		
 		Scanner menuScan = new Scanner(System.in);
 		String userInput;
@@ -41,7 +44,7 @@ public class CivLifeDriver {
 		//layout of main screen
 		System.out.println("       MENU              " + civNameInput + "s" + " civilization");
 		System.out.println("-----------------------------------------------");
-		System.out.println("(V)iew Rescources");
+		System.out.println("(V)iew Rescources		 Y: " + year + "  " + "M: " + month);
 		System.out.println("(G)ather Resources");
 		
 		//User decides whether they wan to view or gather resources
@@ -50,18 +53,18 @@ public class CivLifeDriver {
 			userInput = menuScan.nextLine();
 			
 			if(userInput.equals("V")||userInput.equals("v")) {
-				viewResources(wood,stone,food,civNameInput);
+				viewResources(wood,stone,food,civNameInput,month,year);
 				done = true;
 			}
 			else if(userInput.equals("G")||userInput.equals("g")) {
-				gatherResourceMenu(wood,stone,food,civNameInput);
+				gatherResourceMenu(wood,stone,food,civNameInput,month,year);
 				done = true;
 			}
 		}	
 	}//end menu
 	
 	//View resources menu method
-	public static void viewResources(Resource wood, Resource stone, Resource food, String civNameInput) {
+	public static void viewResources(Resource wood, Resource stone, Resource food, String civNameInput, int month, int year) {
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -79,14 +82,14 @@ public class CivLifeDriver {
 			userViewInput = viewScan.nextLine();
 			
 			if(userViewInput.equals("B")||userViewInput.equals("b")) {
-				menu(wood,stone,food,civNameInput);
+				menu(wood,stone,food,civNameInput,month,year);
 				done = true;
 			}
 		}
 	}//end viewResource menu
 	
 	//gather resources menu method
-	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food, String civNameInput) {
+	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food, String civNameInput, int month, int year) {
 			
 		Scanner gatherScan = new Scanner(System.in);
 		String gatherAnswer;
@@ -117,6 +120,13 @@ public class CivLifeDriver {
 				System.out.println("Current amount of wood: " + wood.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
+				
+				//updates the current month
+				month++;
+				if(month == 13){
+					year++;
+					month = 0;
+				}
 			}
 			
 			//if the user wants to gather stone
@@ -133,6 +143,13 @@ public class CivLifeDriver {
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
+				
+				//updates the current month
+				month++;
+				if(month == 13){
+					year++;
+					month = 0;
+				}
 			}
 			
 			//if the user wants to gather food
@@ -149,6 +166,13 @@ public class CivLifeDriver {
 				System.out.println("Current amount of food: " + food.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
+				
+				//updates the current month
+				month++;
+				if(month == 13){
+					year++;
+					month = 0;
+				}
 			}
 			
 			//if the user enters an invalid option
@@ -157,6 +181,6 @@ public class CivLifeDriver {
 			}
 		}
 			
-		menu(wood,stone,food, civNameInput);
+		menu(wood,stone,food, civNameInput, month, year);
 	}//end gatherResource menu
 }//end class
