@@ -206,7 +206,7 @@ public class CivLifeDriver {
 		String userInput;
 		boolean done = false;
 		
-		
+		//layout for population menu
 		System.out.println("CURRENT POPULATION");
 		System.out.println("------------------");
 		System.out.println("FARMERS: " + farmer.getTypePopulation());
