@@ -1,19 +1,24 @@
+package civLife;
+
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class CivLifeDriver {
+	
+	private static Resource wood = new Resource("WOOD",100);
+	private static Resource stone = new Resource("STONE",100);
+	private static Resource food = new Resource("FOOD",100);
+	
+	private static PersonType farmer = new PersonType("FARMER", 10);
+	private static PersonType fighter = new PersonType("FIGHTER", 0);			
+	private static PersonType lumberjack = new PersonType("LUMBERJACK", 10);
+	private static PersonType miner = new PersonType("MINER",10);
+	private static int month = 0;
+	private static int year = 0;
+	
 	public static void main(String[] args) {
 		
-		//creates the resource objects
-		Resource wood = new Resource("WOOD",100);
-		Resource stone = new Resource("STONE",100);
-		Resource food = new Resource("FOOD",100);
 		
-		PersonType farmer = new PersonType("FARMER", 20);
-		PersonType fighter = new PersonType("FIGHTER", 0);		
-		PersonType royalty = new PersonType("ROYALTY", 0);
-		
-		int month = 0;
-		int year = 0;
+
 		
 		Scanner civNameScan = new Scanner(System.in);
 		String civNameInput;
@@ -35,12 +40,12 @@ public class CivLifeDriver {
 		}
 		//displays the main menu
 		System.out.println();
-		menu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+		menu(civNameInput);
 		
 	}//end main
 	
 	//main menu method
-	public static void menu(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter, PersonType royalty, String civNameInput, int month, int year) {
+	public static void menu(String civNameInput) {
 		
 		Scanner menuScan = new Scanner(System.in);
 		String userInput;
@@ -60,24 +65,24 @@ public class CivLifeDriver {
 			
 			if(userInput.equals("V")||userInput.equals("v")) {
 				System.out.println();
-				viewResources(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				viewResources(civNameInput);
 				done = true;
 			}
 			else if(userInput.equals("G")||userInput.equals("g")) {
 				System.out.println();
-				gatherResourceMenu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				gatherResourceMenu(civNameInput);
 				done = true;
 			}
 			else if(userInput.equals("P")||userInput.equals("p")){
 				System.out.println();
-				viewPopulation(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				viewPopulation(civNameInput);
 				done = true;				
 			}
 		}	
 	}//end menu
 	
 	//View resources menu method
-	public static void viewResources(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter,  PersonType royalty, String civNameInput, int month, int year) {
+	public static void viewResources(String civNameInput) {
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -96,14 +101,14 @@ public class CivLifeDriver {
 			
 			if(userViewInput.equals("B")||userViewInput.equals("b")) {
 				System.out.println();
-				menu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				menu(civNameInput);
 				done = true;
 			}
 		}
 	}//end viewResource menu
 	
 	//gather resources menu method
-	public static void gatherResourceMenu(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter, PersonType royalty, String civNameInput, int month, int year) {
+	public static void gatherResourceMenu(String civNameInput) {
 			
 		Scanner gatherScan = new Scanner(System.in);
 		String gatherAnswer;
@@ -131,7 +136,7 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civNameInput +", wood has been gathered! You gained: " + wood.gatherResource(wood));
+				System.out.println(civNameInput +", wood has been gathered! You gained: " + wood.gatherResource(wood,lumberjack.getTypePopulation()));
 				System.out.println("Current amount of wood: " + wood.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -155,7 +160,7 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civNameInput +", stone has been successfully gathered! You gained: " + stone.gatherResource(stone));
+				System.out.println(civNameInput +", stone has been successfully gathered! You gained: " + stone.gatherResource(stone,miner.getTypePopulation()));
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -179,7 +184,7 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civNameInput +", food has been found and gathered! You gained: " + food.gatherResource(food));
+				System.out.println(civNameInput +", food has been found and gathered! You gained: " + food.gatherResource(food,farmer.getTypePopulation()));
 				System.out.println("Current amount of food: " + food.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -198,10 +203,10 @@ public class CivLifeDriver {
 			}
 		}
 		System.out.println();	
-		menu(wood,stone,food, farmer, fighter, royalty, civNameInput, month, year);
+		menu(civNameInput);
 	}//end gatherResource menu
 	
-	public static void viewPopulation(Resource wood, Resource stone, Resource food, PersonType farmer, PersonType fighter, PersonType royalty, String civNameInput, int month, int year){
+	public static void viewPopulation(String civNameInput){
 		Scanner viewPopScan = new Scanner(System.in);
 		String userInput;
 		boolean done = false;
@@ -211,7 +216,8 @@ public class CivLifeDriver {
 		System.out.println("------------------");
 		System.out.println("FARMERS: " + farmer.getTypePopulation());
 		System.out.println("FIGHTERS: " + fighter.getTypePopulation());
-		System.out.println("ROYALTY: " + royalty.getTypePopulation());
+		System.out.println("MINER: " + miner.getTypePopulation());
+		System.out.println("LUMBERJACK: " + lumberjack.getTypePopulation());
 		System.out.println("(B)ack");
 		
 		//If the user wants to go back to main menu
@@ -220,10 +226,9 @@ public class CivLifeDriver {
 			
 			if(userInput.equals("B")||userInput.equals("b")) {
 				System.out.println();
-				menu(wood,stone,food,farmer,fighter,royalty,civNameInput,month,year);
+				menu(civNameInput);
 				done = true;
 			}
 		}		
 	}
 }//end class
-

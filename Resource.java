@@ -1,3 +1,4 @@
+package civLife;
 //Class that creates a resource object
 public class Resource {
 	private String resourceName;
@@ -17,11 +18,14 @@ public class Resource {
 		return resourceAmount;
 	}
 	//Gather more of that resource, then add it to the current total, returns the gathered amount
-	public int gatherResource(Resource other){
+	public int gatherResource(Resource other, int populationBoost){
 		int gatheredAmount = 0;	
-		gatheredAmount = (int)(Math.random()* (50-30)) + 30;
+		
+		int max = 50 + populationBoost/10;
+		int min = 30 + populationBoost/10;
+		
+		gatheredAmount = (int)(Math.random()* (max-min)) + min;
 		other.resourceAmount += gatheredAmount;
 		return gatheredAmount;
 	}
 }
-
