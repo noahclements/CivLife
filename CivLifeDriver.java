@@ -289,7 +289,7 @@ public class CivLifeDriver {
 					//properAnswer = true;
 				}
 				else if((wood.getResourceAmount() <= hut.getWoodPrice()) && (stone.getResourceAmount() <= hut.getStonePrice())){
-					System.out.println("Not enough wood or stone!");
+					System.out.println("Not enough wood and stone!");
 					System.out.println();
 					menu();
 				}
