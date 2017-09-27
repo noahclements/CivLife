@@ -38,6 +38,7 @@ public class CivLifeDriver {
 		System.out.println("(G)ather Resources");
 		System.out.println("(P)opulation");
 		System.out.println("(B)uildings");
+		System.out.println("(A)cquire Buildings");
 		
 		//User decides whether they wan to view or gather resources
 		while(!done)
@@ -63,6 +64,11 @@ public class CivLifeDriver {
 				System.out.println();
 				viewBuildings();
 				done = true;				
+			}
+			else if(userInput.equals("A")||userInput.equals("a")){
+				System.out.println();
+				buyBuildings();
+				done = true;	
 			}
 		}	
 	}//end menu
@@ -253,6 +259,59 @@ public class CivLifeDriver {
 			}
 		}	
 	}
+	public static void buyBuildings(){
+		
+		Scanner buyScan = new Scanner(System.in);
+		String buyAnswer;
+		//boolean properAnswer = false;
+		
+		//layout for gather resources menu
+		System.out.println("WHAT BUILDING WOULD YOU LIKE TO BUY?");
+		System.out.println("---------------------------------------");
+		System.out.println("(1) "+ hut.getBuildingName() + " (" + hut.getWoodPrice() + " wood, " + hut.getStonePrice() + " stone)");
+	
+		//while(!properAnswer) {
+			buyAnswer = buyScan.nextLine();
+			
+			//User wants to buy a hut
+			if(buyAnswer.equals("1")) {
+				if((wood.getResourceAmount() >= hut.getWoodPrice()) && (stone.getResourceAmount() >= hut.getStonePrice()))
+				{
+					System.out.println("This purchase was successful!");
+					System.out.println(hut.getWoodPrice() + " wood was deducted");
+					System.out.println(hut.getStonePrice() + " stone was deducted");					
+					((Hut) hut).addHut();
+					
+					wood.removeResourceAmount(wood, stone, hut.getWoodPrice(), 0);
+					stone.removeResourceAmount(wood, stone, 0, hut.getStonePrice());
+					
+					System.out.println("You now own " + ((Hut) hut).getNumOfHuts() + " huts");
+					//properAnswer = true;
+				}
+				else if((wood.getResourceAmount() <= hut.getWoodPrice()) && (stone.getResourceAmount() <= hut.getStonePrice())){
+					System.out.println("Not enough wood or stone!");
+					System.out.println();
+					menu();
+				}
+				else if(wood.getResourceAmount() <= hut.getWoodPrice()){
+					System.out.println("Not enough wood! (Need " + (hut.getWoodPrice() - wood.getResourceAmount()) + " more)");
+					System.out.println();
+					menu();
+				}
+				else if(stone.getResourceAmount() <= hut.getStonePrice()){
+					System.out.println("Not enough stone! (Need " + (hut.getStonePrice() - stone.getResourceAmount()) + " more)");
+					System.out.println();
+					menu();
+				}	
+			//}
+			//if the user enters an invalid option
+			else {
+				System.out.println("Please enter a valid input");
+			}
+		}
+		System.out.println();	
+		menu();
+	}//end buyBuilding menu		
 	
 	public static  String getUserName(){
 		

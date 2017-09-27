@@ -1,5 +1,3 @@
-package civLife;
-
 public class Hut implements Building {
 	private int woodCost;
 	private int stoneCost;
@@ -11,11 +9,11 @@ public class Hut implements Building {
 		woodCost = woodCostIn;
 		stoneCost = stoneCostIn;
 		
-		name = "hut";
+		name = "HUT";
 		numOfHuts = 6;
 		hutLevel = 1;
 	}
-	@Override
+	//@Override
 	public boolean purchaseBuilding(int woodResource, int stoneResource) {
 		if(woodResource >= woodCost && stoneResource >= stoneCost) {
 			return true;
@@ -25,18 +23,18 @@ public class Hut implements Building {
 		}
 	}
 
-	@Override
+	//@Override
 	public String getBuildingName() {
 		return name;
 	}
 
-	@Override
+	//@Override
 	public int getBuildingLevel() {
 
 		return hutLevel;
 	}
 
-	@Override
+	//@Override
 	public int getStonePrice() {
 		
 		return stoneCost;
