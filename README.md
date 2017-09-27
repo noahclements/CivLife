@@ -15,6 +15,6 @@ COMPLETE-create a hut class( uses the interface) huts are meant for people to li
 
 -make a purchase building UI
 
--make a view buildings UI
+COMPLETE-make a view buildings UI
 
 COMPLETE-fix the parameter problem
