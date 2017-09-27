@@ -1,5 +1,3 @@
-package civLife;
-
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class CivLifeDriver {
@@ -39,6 +37,7 @@ public class CivLifeDriver {
 		System.out.println("(V)iew Rescources		 Y: " + year + "  " + "M: " + month);
 		System.out.println("(G)ather Resources");
 		System.out.println("(P)opulation");
+		System.out.println("(B)uildings");
 		
 		//User decides whether they wan to view or gather resources
 		while(!done)
@@ -58,6 +57,11 @@ public class CivLifeDriver {
 			else if(userInput.equals("P")||userInput.equals("p")){
 				System.out.println();
 				viewPopulation();
+				done = true;				
+			}
+			else if(userInput.equals("B")||userInput.equals("b")){
+				System.out.println();
+				viewBuildings();
 				done = true;				
 			}
 		}	
@@ -227,6 +231,29 @@ public class CivLifeDriver {
 		}		
 	}
 	
+	public static void viewBuildings(){
+		Scanner viewBuildingScan = new Scanner(System.in);
+		String userInput;
+		boolean done = false;
+		
+		//layout for building menu
+		System.out.println("YOUR BUILDINGS");
+		System.out.println("----------------");
+		System.out.println("HUTS: " + ((Hut) hut).getNumOfHuts() + "   LVL: " + ((Hut) hut).getBuildingLevel());
+		System.out.println("(B)ack");
+		
+		//If the user wants to go back to main menu
+		while(!done) {
+			userInput = viewBuildingScan.nextLine();
+			
+			if(userInput.equals("B")||userInput.equals("b")) {
+				System.out.println();
+				menu();
+				done = true;
+			}
+		}	
+	}
+	
 	public static  String getUserName(){
 		
 		Scanner civNameScan = new Scanner(System.in);
@@ -253,5 +280,3 @@ public class CivLifeDriver {
 		return civNameInput;
 	}
 }//end class
-
-
