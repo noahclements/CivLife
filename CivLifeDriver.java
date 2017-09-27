@@ -1,5 +1,3 @@
-package civLife;
-
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class CivLifeDriver {
@@ -117,7 +115,11 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civName +", wood has been gathered! You gained: " + wood.gatherResource(wood,lumberjack.getTypePopulation()));
+				int woodAmount = wood.gatherResource(wood,lumberjack.getTypePopulation());
+				int bonusWood = (woodAmount + lumberjack.getTypePopulation()/10)- woodAmount;
+				
+				System.out.println(civName +", wood has been gathered! You gained: " + woodAmount);
+				System.out.println("Having " + lumberjack.getTypePopulation() + " lumberjacks gave you a bonus "  + bonusWood + (" wood (Having more lumberjacks will earn you more wood!)"));
 				System.out.println("Current amount of wood: " + wood.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -141,7 +143,12 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civName +", stone has been successfully gathered! You gained: " + stone.gatherResource(stone,miner.getTypePopulation()));
+
+				int stoneAmount = stone.gatherResource(stone,miner.getTypePopulation());
+				int bonusStone = (stoneAmount + miner.getTypePopulation()/10)- stoneAmount;
+				
+				System.out.println(civName +", stone has been successfully gathered! You gained: " + stoneAmount);
+				System.out.println("Having " + miner.getTypePopulation() + " miners gave you a bonus "  + bonusStone + (" stone (Having more miners will earn you more stone!)"));
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -165,7 +172,11 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civName +", food has been found and gathered! You gained: " + food.gatherResource(food,farmer.getTypePopulation()));
+				int foodAmount = food.gatherResource(food,farmer.getTypePopulation());
+				int bonusFood = (foodAmount + farmer.getTypePopulation()/10)- foodAmount;
+				
+				System.out.println(civName +", food has been found and gathered! You gained: " + foodAmount);
+				System.out.println("Having " + farmer.getTypePopulation() + " farmers gave you a bonus "  + bonusFood + (" food (Having more farmers will earn you more food!)"));
 				System.out.println("Current amount of food: " + food.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
