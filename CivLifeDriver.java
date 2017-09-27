@@ -1,5 +1,3 @@
-package civLife;
-
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class CivLifeDriver {
@@ -14,56 +12,72 @@ public class CivLifeDriver {
 	private static PersonType miner = new PersonType("MINER",10);
 	private static int month = 0;
 	private static int year = 0;
-	private static String civName = getUserName();
 	
 	public static void main(String[] args) {
 		
-
+		Scanner civNameScan = new Scanner(System.in);
+		String civNameInput;
+		boolean validName = false;
+		
+		//opening screen, allows user to enter name
+		System.out.println("Welcome to our text based civilization game!!");
+		System.out.println("To begin enter your name");
+		civNameInput = civNameScan.nextLine();
+		
+		//check if name is valid
+		while(!validName){
+			if(civNameInput.equals("")||civNameInput.length()<2||civNameInput.length()>12){
+				System.out.println("Please enter a valid name");
+				civNameInput = civNameScan.nextLine();
+			}
+			else
+				validName = true;	
+		}
 		//displays the main menu
 		System.out.println();
-		menu();
+		menu(civNameInput);
 		
 	}//end main
 	
 	//main menu method
-	public static void menu() {
+	public static void menu(String civNameInput) {
 		
 		Scanner menuScan = new Scanner(System.in);
 		String userInput;
 		boolean done = false;
 		
 		//layout of main screen
-		System.out.println("       MENU              " + civName + "s" + " civilization");
+		System.out.println("       MENU              " + civNameInput + "s" + " civilization");
 		System.out.println("-----------------------------------------------");
 		System.out.println("(V)iew Rescources		 Y: " + year + "  " + "M: " + month);
 		System.out.println("(G)ather Resources");
 		System.out.println("(P)opulation");
 		
-		//User decides whether they wan to view or gather resources
+		//User decides whether they want to view or gather resources
 		while(!done)
 		{
 			userInput = menuScan.nextLine();
 			
 			if(userInput.equals("V")||userInput.equals("v")) {
 				System.out.println();
-				viewResources();
+				viewResources(civNameInput);
 				done = true;
 			}
 			else if(userInput.equals("G")||userInput.equals("g")) {
 				System.out.println();
-				gatherResourceMenu();
+				gatherResourceMenu(civNameInput);
 				done = true;
 			}
 			else if(userInput.equals("P")||userInput.equals("p")){
 				System.out.println();
-				viewPopulation();
+				viewPopulation(civNameInput);
 				done = true;				
 			}
 		}	
 	}//end menu
 	
 	//View resources menu method
-	public static void viewResources() {
+	public static void viewResources(String civNameInput) {
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -82,14 +96,14 @@ public class CivLifeDriver {
 			
 			if(userViewInput.equals("B")||userViewInput.equals("b")) {
 				System.out.println();
-				menu();
+				menu(civNameInput);
 				done = true;
 			}
 		}
 	}//end viewResource menu
 	
 	//gather resources menu method
-	public static void gatherResourceMenu() {
+	public static void gatherResourceMenu(String civNameInput) {
 			
 		Scanner gatherScan = new Scanner(System.in);
 		String gatherAnswer;
@@ -117,7 +131,11 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civName +", wood has been gathered! You gained: " + wood.gatherResource(wood,lumberjack.getTypePopulation()));
+				int woodAmount = wood.gatherResource(wood,lumberjack.getTypePopulation());
+				int bonusWood = (woodAmount + lumberjack.getTypePopulation()/10)- woodAmount;
+				
+				System.out.println(civNameInput +", wood has been gathered! You gained: " + woodAmount);
+				System.out.println("Having " + lumberjack.getTypePopulation() + " lumberjacks gave you a bonus "  + bonusWood + (" wood (Having more lumberjacks will earn you more wood!)"));
 				System.out.println("Current amount of wood: " + wood.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -141,7 +159,11 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civName +", stone has been successfully gathered! You gained: " + stone.gatherResource(stone,miner.getTypePopulation()));
+				int stoneAmount = stone.gatherResource(stone,miner.getTypePopulation());
+				int bonusStone = (stoneAmount + miner.getTypePopulation()/10)- stoneAmount;
+				
+				System.out.println(civNameInput +", stone has been successfully gathered! You gained: " + stoneAmount);
+				System.out.println("Having " + miner.getTypePopulation() + " miners gave you a bonus "  + bonusStone + (" stone (Having more miners will earn you more stone!)"));
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -165,7 +187,12 @@ public class CivLifeDriver {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
-				System.out.println(civName +", food has been found and gathered! You gained: " + food.gatherResource(food,farmer.getTypePopulation()));
+				
+				int foodAmount = food.gatherResource(food,farmer.getTypePopulation());
+				int bonusFood = (foodAmount + farmer.getTypePopulation()/10)- foodAmount;
+				
+				System.out.println(civNameInput +", food has been found and gathered! You gained: " + foodAmount);
+				System.out.println("Having " + farmer.getTypePopulation() + " farmers gave you a bonus "  + bonusFood + (" food (Having more farmers will earn you more food!)"));
 				System.out.println("Current amount of food: " + food.getResourceAmount());
 				System.out.println();
 				properAnswer = true;
@@ -184,10 +211,10 @@ public class CivLifeDriver {
 			}
 		}
 		System.out.println();	
-		menu();
+		menu(civNameInput);
 	}//end gatherResource menu
 	
-	public static void viewPopulation(){
+	public static void viewPopulation(String civNameInput){
 		Scanner viewPopScan = new Scanner(System.in);
 		String userInput;
 		boolean done = false;
@@ -207,35 +234,9 @@ public class CivLifeDriver {
 			
 			if(userInput.equals("B")||userInput.equals("b")) {
 				System.out.println();
-				menu();
+				menu(civNameInput);
 				done = true;
 			}
 		}		
-	}
-	
-	public static  String getUserName(){
-		
-		Scanner civNameScan = new Scanner(System.in);
-		String civNameInput;
-		boolean validName = false;
-		
-		//opening screen, allows user to enter name
-		System.out.println("Welcome to our text based civilization game!!");
-		System.out.println("To begin enter your name");
-		civNameInput = civNameScan.nextLine();
-		
-		//check if name is valid
-		while(!validName){
-			if(civNameInput.equals("")||civNameInput.length()<2||civNameInput.length()>12){
-				System.out.println("Please enter a valid name");
-				civNameInput = civNameScan.nextLine();
-			}
-			else {
-				validName = true;
-
-			}
-
-		}
-		return civNameInput;
 	}
 }//end class
