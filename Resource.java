@@ -28,4 +28,9 @@ public class Resource {
 		other.resourceAmount += gatheredAmount;
 		return gatheredAmount;
 	}
+	
+	public void removeResourceAmount(Resource wood, Resource stone, int woodChange, int stoneChange) {
+		wood.resourceAmount -= woodChange;
+		stone.resourceAmount -=stoneChange;
+	}
 }

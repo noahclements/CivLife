@@ -6,5 +6,7 @@ public interface Building {
 	boolean purchaseBuilding(int woodResource, int stoneRescource);
 	String getBuildingName();
 	int getBuildingLevel();
-	String getBuildingPrice();
+	int getStonePrice();
+	int getWoodPrice();
+	void changeBuildingLevel();
 }
