@@ -3,7 +3,7 @@ A textbase game where you conquer the world!!
 
 V-0.1.3 updates
 
-NOT POSSIBLE-find a way so the text cursor is always on the bottom
+EZINEZKOA-find a way so the text cursor is always on the bottom
 
 COMPLETE-create person types lumberjack and miner
 
