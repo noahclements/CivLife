@@ -270,7 +270,6 @@ public class CivLifeDriver {
 		System.out.println("---------------------------------------");
 		System.out.println("(1) "+ hut.getBuildingName() + " (" + hut.getWoodPrice() + " wood, " + hut.getStonePrice() + " stone)");
 	
-		//while(!properAnswer) {
 			buyAnswer = buyScan.nextLine();
 			
 			//User wants to buy a hut
@@ -302,15 +301,14 @@ public class CivLifeDriver {
 					System.out.println("Not enough stone! (Need " + (hut.getStonePrice() - stone.getResourceAmount()) + " more)");
 					System.out.println();
 					menu();
-				}	
-			//}
-			//if the user enters an invalid option
-			else {
-				System.out.println("Please enter a valid input");
+				}
 			}
-		}
-		System.out.println();	
-		menu();
+			//if the user enters an invalid option
+			else{
+				System.out.println("Please enter a valid input");
+				System.out.println();
+				buyBuildings();
+			}		
 	}//end buyBuilding menu		
 	
 	public static  String getUserName(){
