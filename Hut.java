@@ -7,12 +7,13 @@ public class Hut implements Building {
 	private int hutLevel;
 	private int numOfHuts;
 	
-	public Hut(int woodCostIn, int stoneCostIn, int hutLevelIn ) {
+	public Hut(int woodCostIn, int stoneCostIn) {
 		woodCost = woodCostIn;
 		stoneCost = stoneCostIn;
-		hutLevel = hutLevelIn;
+		
 		name = "hut";
 		numOfHuts = 0;
+		hutLevel = 1;
 	}
 	@Override
 	public boolean purchaseBuilding(int woodResource, int stoneResource) {

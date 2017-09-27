@@ -1,3 +1,5 @@
+package civLife;
+
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class CivLifeDriver {
@@ -13,6 +15,7 @@ public class CivLifeDriver {
 	private static int month = 0;
 	private static int year = 0;
 	private static String civName = getUserName();
+	private static Building hut = new Hut(250,250);
 	
 	public static void main(String[] args) {
 		
@@ -250,3 +253,5 @@ public class CivLifeDriver {
 		return civNameInput;
 	}
 }//end class
+
+
