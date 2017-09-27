@@ -12,7 +12,7 @@ public class Hut implements Building {
 		stoneCost = stoneCostIn;
 		
 		name = "hut";
-		numOfHuts = 0;
+		numOfHuts = 6;
 		hutLevel = 1;
 	}
 	@Override
