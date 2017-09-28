@@ -1,20 +1,20 @@
 # CivLife
 A textbase game where you conquer the world!!
 
-V-0.1.3 updates
+V-0.1.4 updates
 
-IMPOSSSSSIBLE-find a way so the text cursor is always on the bottom
+Make the menu options more compact(have menus in menus if you know what I mean).
 
-COMPLETE-create person types lumberjack and miner
+Add a barracks building that can turn a persontype into a fighter
 
-COMPLETE-having more of a specific person type will increase how much you gather from a specific resource
+Revise the structure of the whole program. See if there is a way to make it better in the future.(If we continue like this we're fucked)
+  -have less stuff in the driver and move it more to the other class
+  -toStrings could be a huge "line saver"
+  
+Incorporate levels for buildings. Find a smart way to do it and how this leveling up will affect a building
 
-COMPLETE-create a building interface
+make the player pay extra resources at the end of each year. Makes the game more difficult
 
-COMPLETE-create a hut class( uses the interface) huts are meant for people to live in. 5 people per hut.
+make a help so we dont have to explain as much in game. Maybe have help option with options in the options for each category?
 
-COMPLETE-make a purchase building UI
 
-COMPLETE-make a view buildings UI
-
-COMPLETE-fix the parameter problem
