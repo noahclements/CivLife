@@ -1,4 +1,4 @@
-package civLife;
+//package civLife;
 
 
 import java.util.Scanner;

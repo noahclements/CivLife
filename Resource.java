@@ -1,4 +1,4 @@
-package civLife;
+
 //Class that creates a resource object
 public class Resource {
 	private String resourceName;

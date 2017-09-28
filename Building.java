@@ -1,5 +1,5 @@
 //the Interface for buildings
-package civLife;
+//package civLife;
 
 public interface Building {
 	
