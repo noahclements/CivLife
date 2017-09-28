@@ -274,7 +274,7 @@ public class CivLifeDriver {
 			
 			//User wants to buy a hut
 			if(buyAnswer.equals("1")) {
-				if((wood.getResourceAmount() >= hut.getWoodPrice()) && (stone.getResourceAmount() >= hut.getStonePrice()))
+				if(hut.purchaseBuilding(wood.getResourceAmount(),stone.getResourceAmount()))
 				{
 					System.out.println("This purchase was successful!");
 					System.out.println(hut.getWoodPrice() + " wood was deducted");
@@ -285,9 +285,9 @@ public class CivLifeDriver {
 					stone.removeResourceAmount(wood, stone, 0, hut.getStonePrice());
 					
 					System.out.println("You now own " + ((Hut) hut).getNumOfHuts() + " huts");
-					//properAnswer = true;
+					menu();
 				}
-				else if((wood.getResourceAmount() <= hut.getWoodPrice()) && (stone.getResourceAmount() <= hut.getStonePrice())){
+				else if(!(hut.purchaseBuilding(wood.getResourceAmount(),stone.getResourceAmount()))){
 					System.out.println("Not enough wood and stone!");
 					System.out.println();
 					menu();
@@ -310,7 +310,7 @@ public class CivLifeDriver {
 				buyBuildings();
 			}		
 	}//end buyBuilding menu		
-	
+ 	
 	public static  String getUserName(){
 		
 		Scanner civNameScan = new Scanner(System.in);
