@@ -17,4 +17,6 @@ make the player pay extra resources at the end of each year. Makes the game more
 
 make a help so we dont have to explain as much in game. Maybe have help option with options in the options for each category?
 
+Make huts have a purpose. Every hut you gain makes you able to house 5 more people ( dont worry about people coming in yet )
+
 
