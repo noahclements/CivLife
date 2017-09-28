@@ -1,3 +1,5 @@
+package civLife;
+
 //Creates a personType object with a name and population
 public class PersonType {
 	private String name;

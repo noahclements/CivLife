@@ -3,6 +3,7 @@ package civLife;
 
 import java.util.Scanner;
 import java.util.concurrent.*;
+
 public class CivLifeDriver {
 	
 	private static Resource wood = new Resource("WOOD",100);
@@ -19,15 +20,11 @@ public class CivLifeDriver {
 	
 	private static String civName = getUserName();
 	
-	private static Building hut = new Hut(250,250);
+	private static Building hut = new Hut(250,250,"HUT",6,1);
 	
 	public static void main(String[] args) {
 		
-
-		//displays the main menu
-		System.out.println();
 		menu();
-		
 	}//end main
 	
 	//main menu method
@@ -38,6 +35,7 @@ public class CivLifeDriver {
 		boolean done = false;
 		
 		//layout of main screen
+		System.out.println();
 		System.out.println("       MENU              " + civName + "s" + " civilization");
 		System.out.println("-----------------------------------------------");
 		System.out.println("(V)iew Rescources		 Y: " + year + "  " + "M: " + month);
@@ -47,31 +45,40 @@ public class CivLifeDriver {
 		System.out.println("(A)cquire Buildings");
 		
 		//User decides whether they wan to view or gather resources
-		while(!done)
-		{
+		while(!done){
+			
 			userInput = menuScan.nextLine();
 			
 			if(userInput.equals("V")||userInput.equals("v")) {
+				
 				System.out.println();
 				viewResources();
 				done = true;
 			}
+			
 			else if(userInput.equals("G")||userInput.equals("g")) {
+				
 				System.out.println();
 				gatherResourceMenu();
 				done = true;
 			}
+			
 			else if(userInput.equals("P")||userInput.equals("p")){
+				
 				System.out.println();
 				viewPopulation();
 				done = true;				
 			}
+			
 			else if(userInput.equals("B")||userInput.equals("b")){
+				
 				System.out.println();
 				viewBuildings();
 				done = true;				
 			}
+			
 			else if(userInput.equals("A")||userInput.equals("a")){
+				
 				System.out.println();
 				buyBuildings();
 				done = true;	
@@ -81,6 +88,7 @@ public class CivLifeDriver {
 	
 	//View resources menu method
 	public static void viewResources() {
+		
 		Scanner viewScan = new Scanner(System.in);
 		String userViewInput;
 		boolean done = false;
@@ -88,16 +96,18 @@ public class CivLifeDriver {
 		//layout for viewing resources menu
 		System.out.println("  YOUR RESOURCES   ");
 		System.out.println("-------------------");
-		System.out.println(wood.getResourceName() + ": " + wood.getResourceAmount());
-		System.out.println(stone.getResourceName() + ": " + stone.getResourceAmount());
-		System.out.println(food.getResourceName() + ": " + food.getResourceAmount());
+		System.out.println(wood.toString());
+		System.out.println(stone.toString());
+		System.out.println(food.toString());
 		System.out.println("(B)ack");
 		
 		//If the user wants to go back to main menu
 		while(!done) {
+			
 			userViewInput = viewScan.nextLine();
 			
 			if(userViewInput.equals("B")||userViewInput.equals("b")) {
+				
 				System.out.println();
 				menu();
 				done = true;
@@ -109,7 +119,6 @@ public class CivLifeDriver {
 	public static void gatherResourceMenu() {
 			
 		Scanner gatherScan = new Scanner(System.in);
-		String gatherAnswer;
 		boolean properAnswer = false;
 		
 		//layout for gather resources menu
@@ -121,31 +130,36 @@ public class CivLifeDriver {
 	
 		while(!properAnswer) {
 			
-			gatherAnswer = gatherScan.nextLine();
+			String gatherAnswer = gatherScan.nextLine();
 			
 			//if user wants to gather wood
 			if(gatherAnswer.equals("1")) {
+				
 				System.out.println();
 				System.out.println("Gathering wood...");
 				System.out.println();
 				try {
+					
 					TimeUnit.SECONDS.sleep(2);
+					
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}	
+				
 				int woodAmount = wood.gatherResource(wood,lumberjack.getTypePopulation());
 				int bonusWood = (woodAmount + lumberjack.getTypePopulation()/10)- woodAmount;
 				
 				System.out.println(civName +", wood has been gathered! You gained: " + woodAmount);
 				System.out.println("Having " + lumberjack.getTypePopulation() + " lumberjacks gave you a bonus "  + bonusWood + (" wood"));
-				System.out.println("Current amount of wood: " + wood.getResourceAmount());
-				System.out.println();
+				System.out.println("Current amount of wood: " + wood.getResourceAmount());;
 				properAnswer = true;
 				
 				//updates the current month
 				month++;
+				
 				if(month == 13){
+					
 					year++;
 					month = 0;
 				}
@@ -153,13 +167,17 @@ public class CivLifeDriver {
 			
 			//if the user wants to gather stone
 			else if(gatherAnswer.equals("2")) {
+				
 				System.out.println();
 				System.out.println("Gathering stone...");
 				System.out.println();
+				
 				try {
-					TimeUnit.SECONDS.sleep(2);
+					
+					TimeUnit.SECONDS.sleep(2);	
+				
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}	
 
@@ -169,12 +187,12 @@ public class CivLifeDriver {
 				System.out.println(civName +", stone has been successfully gathered! You gained: " + stoneAmount);
 				System.out.println("Having " + miner.getTypePopulation() + " miners gave you a bonus "  + bonusStone + (" stone"));
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
-				System.out.println();
 				properAnswer = true;
 				
-				//updates the current month
 				month++;
+				
 				if(month == 13){
+					
 					year++;
 					month = 0;
 				}
@@ -182,27 +200,32 @@ public class CivLifeDriver {
 			
 			//if the user wants to gather food
 			else if(gatherAnswer.equals("3")) {
+				
 				System.out.println();
 				System.out.println("Finding and collecting food...");
 				System.out.println();
+				
 				try {
+					
 					TimeUnit.SECONDS.sleep(2);
+					
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}	
+				
 				int foodAmount = food.gatherResource(food,farmer.getTypePopulation());
 				int bonusFood = (foodAmount + farmer.getTypePopulation()/10)- foodAmount;
 				
 				System.out.println(civName +", food has been found and gathered! You gained: " + foodAmount);
 				System.out.println("Having " + farmer.getTypePopulation() + " farmers gave you a bonus "  + bonusFood + (" food"));
 				System.out.println("Current amount of food: " + food.getResourceAmount());
-				System.out.println();
 				properAnswer = true;
 				
 				//updates the current month
 				month++;
 				if(month == 13){
+					
 					year++;
 					month = 0;
 				}
@@ -210,16 +233,18 @@ public class CivLifeDriver {
 			
 			//if the user enters an invalid option
 			else {
+				
 				System.out.println("Please enter a valid input");
 			}
 		}
+		
 		System.out.println();	
 		menu();
 	}//end gatherResource menu
 	
 	public static void viewPopulation(){
+		
 		Scanner viewPopScan = new Scanner(System.in);
-		String userInput;
 		boolean done = false;
 		
 		//layout for population menu
@@ -233,10 +258,11 @@ public class CivLifeDriver {
 		
 		//If the user wants to go back to main menu
 		while(!done) {
-			userInput = viewPopScan.nextLine();
+			
+			String userInput = viewPopScan.nextLine();
 			
 			if(userInput.equals("B")||userInput.equals("b")) {
-				System.out.println();
+				
 				menu();
 				done = true;
 			}
@@ -244,27 +270,31 @@ public class CivLifeDriver {
 	}
 	
 	public static void viewBuildings(){
+		
 		Scanner viewBuildingScan = new Scanner(System.in);
 		String userInput;
 		boolean done = false;
-		
+	
 		//layout for building menu
 		System.out.println("YOUR BUILDINGS");
 		System.out.println("----------------");
-		System.out.println("HUTS: " + ((Hut) hut).getNumOfHuts() + "   LVL: " + ((Hut) hut).getBuildingLevel());
+		System.out.println("HUTS: " + ((Hut) hut).getNumOfHuts() + "   LVL: " + (hut.getBuildingLevel()));
 		System.out.println("(B)ack");
 		
 		//If the user wants to go back to main menu
 		while(!done) {
+			
 			userInput = viewBuildingScan.nextLine();
 			
 			if(userInput.equals("B")||userInput.equals("b")) {
+				
 				System.out.println();
 				menu();
 				done = true;
 			}
 		}	
 	}
+	
 	public static void buyBuildings(){
 		
 		Scanner buyScan = new Scanner(System.in);
@@ -281,42 +311,47 @@ public class CivLifeDriver {
 			
 			//User wants to buy a hut
 			if(buyAnswer.equals("1")) {
-				if(hut.purchaseBuilding(wood.getResourceAmount(), stone.getResourceAmount()))
-				{
+				
+				if(hut.purchaseBuilding(wood.getResourceAmount(), stone.getResourceAmount())){
+					
 					System.out.println("This purchase was successful!");
 					System.out.println(hut.getWoodPrice() + " wood was deducted");
 					System.out.println(hut.getStonePrice() + " stone was deducted");					
 					((Hut) hut).addHut();
 					
-					wood.removeResourceAmount(wood, stone, hut.getWoodPrice(), 0);
-					stone.removeResourceAmount(wood, stone, 0, hut.getStonePrice());
+					wood.removeResourceAmount(wood, hut.getWoodPrice());
+					stone.removeResourceAmount(stone, hut.getStonePrice());
 					
 					System.out.println("You now own " + ((Hut) hut).getNumOfHuts() + " huts");
 					//properAnswer = true;
 				}
+				
 				else if((wood.getResourceAmount() <= hut.getWoodPrice()) && (stone.getResourceAmount() <= hut.getStonePrice())){
-					System.out.println("Not enough wood and stone!");
-					System.out.println();
-					menu();
-				}
-				else if(wood.getResourceAmount() <= hut.getWoodPrice()){
-					System.out.println("Not enough wood! (Need " + (hut.getWoodPrice() - wood.getResourceAmount()) + " more)");
-					System.out.println();
-					menu();
-				}
-				else if(stone.getResourceAmount() <= hut.getStonePrice()){
-					System.out.println("Not enough stone! (Need " + (hut.getStonePrice() - stone.getResourceAmount()) + " more)");
-					System.out.println();
-					menu();
+					
+					System.out.println(wood.notEnough(hut.getWoodPrice()) + "\n\nAND\n\n" +stone.notEnough(hut.getStonePrice()) );
 				}
 				
-			}
-			
-			else if(buyAnswer.equals("B")) {
+				else if(wood.getResourceAmount() <= hut.getWoodPrice()){
+					
+					System.out.println(wood.notEnough(hut.getWoodPrice()));
+				}
+				
+				else if(stone.getResourceAmount() <= hut.getStonePrice()){
+					
+					System.out.println(stone.notEnough(hut.getStonePrice()));
+				}
+				
 				menu();
 			}
+			
+			if(buyAnswer.equals("B")) {
+				
+				menu();
+			}
+			
 			//if the user enters an invalid option
 			else{
+				
 				System.out.println("Please enter a valid input");
 				System.out.println();
 				buyBuildings();
@@ -326,28 +361,27 @@ public class CivLifeDriver {
 	public static  String getUserName(){
 		
 		Scanner civNameScan = new Scanner(System.in);
-		String civNameInput;
 		boolean validName = false;
 		
 		//opening screen, allows user to enter name
 		System.out.println("Welcome to our text based civilization game!!");
 		System.out.println("To begin enter your name");
-		civNameInput = civNameScan.nextLine();
+		String civNameInput = civNameScan.nextLine();
 		
 		//check if name is valid
 		while(!validName){
+			
 			if(civNameInput.equals("")||civNameInput.length()<2||civNameInput.length()>12){
+				
 				System.out.println("Please enter a valid name");
 				civNameInput = civNameScan.nextLine();
 			}
 			else {
+				
 				validName = true;
-
 			}
-
 		}
+		
 		return civNameInput;
 	}
 }//end class
-
-
