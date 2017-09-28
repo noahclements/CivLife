@@ -1,3 +1,6 @@
+package civLife;
+
+
 import java.util.Scanner;
 import java.util.concurrent.*;
 public class CivLifeDriver {
@@ -10,9 +13,12 @@ public class CivLifeDriver {
 	private static PersonType fighter = new PersonType("FIGHTER", 0);			
 	private static PersonType lumberjack = new PersonType("LUMBERJACK", 10);
 	private static PersonType miner = new PersonType("MINER",10);
+	
 	private static int month = 0;
 	private static int year = 0;
+	
 	private static String civName = getUserName();
+	
 	private static Building hut = new Hut(250,250);
 	
 	public static void main(String[] args) {
@@ -269,12 +275,13 @@ public class CivLifeDriver {
 		System.out.println("WHAT BUILDING WOULD YOU LIKE TO BUY?");
 		System.out.println("---------------------------------------");
 		System.out.println("(1) "+ hut.getBuildingName() + " (" + hut.getWoodPrice() + " wood, " + hut.getStonePrice() + " stone)");
+		System.out.println("(B)ack");
 	
 			buyAnswer = buyScan.nextLine();
 			
 			//User wants to buy a hut
 			if(buyAnswer.equals("1")) {
-				if(hut.purchaseBuilding(wood.getResourceAmount(),stone.getResourceAmount()))
+				if(hut.purchaseBuilding(wood.getResourceAmount(), stone.getResourceAmount()))
 				{
 					System.out.println("This purchase was successful!");
 					System.out.println(hut.getWoodPrice() + " wood was deducted");
@@ -285,9 +292,9 @@ public class CivLifeDriver {
 					stone.removeResourceAmount(wood, stone, 0, hut.getStonePrice());
 					
 					System.out.println("You now own " + ((Hut) hut).getNumOfHuts() + " huts");
-					menu();
+					//properAnswer = true;
 				}
-				else if(!(hut.purchaseBuilding(wood.getResourceAmount(),stone.getResourceAmount()))){
+				else if((wood.getResourceAmount() <= hut.getWoodPrice()) && (stone.getResourceAmount() <= hut.getStonePrice())){
 					System.out.println("Not enough wood and stone!");
 					System.out.println();
 					menu();
@@ -302,6 +309,11 @@ public class CivLifeDriver {
 					System.out.println();
 					menu();
 				}
+				
+			}
+			
+			else if(buyAnswer.equals("B")) {
+				menu();
 			}
 			//if the user enters an invalid option
 			else{
@@ -310,7 +322,7 @@ public class CivLifeDriver {
 				buyBuildings();
 			}		
 	}//end buyBuilding menu		
- 	
+	
 	public static  String getUserName(){
 		
 		Scanner civNameScan = new Scanner(System.in);
@@ -337,3 +349,5 @@ public class CivLifeDriver {
 		return civNameInput;
 	}
 }//end class
+
+
