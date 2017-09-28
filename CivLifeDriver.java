@@ -36,7 +36,7 @@ public class CivLifeDriver {
 		
 		//layout of main screen
 		System.out.println();
-		System.out.println("       MENU              " + civName + "s" + " civilization");
+		System.out.println("       MENU              " + civName + "'s" + " civilization");
 		System.out.println("-----------------------------------------------");
 		System.out.println("(V)iew Rescources		 Y: " + year + "  " + "M: " + month);
 		System.out.println("(G)ather Resources");
