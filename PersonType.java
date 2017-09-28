@@ -25,4 +25,8 @@ public class PersonType {
 	public void decreasePopulation(int amountDecrease){
 		population -= amountDecrease;
 	}
+	
+	public String toString() {
+		return this.name + ": " + this.population;
+	}
 }

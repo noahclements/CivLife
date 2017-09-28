@@ -56,28 +56,28 @@ public class CivLifeDriver {
 				done = true;
 			}
 			
-			else if(userInput.equals("G")||userInput.equals("g")) {
+			else if(userInput.equalsIgnoreCase("G")) {
 				
 				System.out.println();
 				gatherResourceMenu();
 				done = true;
 			}
 			
-			else if(userInput.equals("P")||userInput.equals("p")){
+			else if(userInput.equalsIgnoreCase("P")){
 				
 				System.out.println();
 				viewPopulation();
 				done = true;				
 			}
 			
-			else if(userInput.equals("B")||userInput.equals("b")){
+			else if(userInput.equalsIgnoreCase("B")){
 				
 				System.out.println();
 				viewBuildings();
 				done = true;				
 			}
 			
-			else if(userInput.equals("A")||userInput.equals("a")){
+			else if(userInput.equalsIgnoreCase("A")){
 				
 				System.out.println();
 				buyBuildings();
@@ -250,10 +250,10 @@ public class CivLifeDriver {
 		//layout for population menu
 		System.out.println("CURRENT POPULATION");
 		System.out.println("------------------");
-		System.out.println("FARMERS: " + farmer.getTypePopulation());
-		System.out.println("FIGHTERS: " + fighter.getTypePopulation());
-		System.out.println("MINER: " + miner.getTypePopulation());
-		System.out.println("LUMBERJACK: " + lumberjack.getTypePopulation());
+		System.out.println(farmer.toString());
+		System.out.println(fighter.toString());
+		System.out.println(miner.toString());
+		System.out.println(lumberjack.toString());
 		System.out.println("(B)ack");
 		
 		//If the user wants to go back to main menu
