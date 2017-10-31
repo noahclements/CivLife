@@ -140,22 +140,22 @@ public class CivLifeDriver {
 	
 		while(!properAnswer) {
 			
-			String gatherAnswer = gatherScan.nextLine();
+			int gatherAnswer = gatherScan.nextInt();
 			
 			//if user wants to gather wood
-			if(gatherAnswer.equals("1")) {
+			if(gatherAnswer == 1) {
 				
 				System.out.println();
-				System.out.println("Gathering wood...");
-				System.out.println();
-				try {
-					
-					TimeUnit.SECONDS.sleep(2);
-					
-				} catch (InterruptedException e) {
-
-					e.printStackTrace();
-				}	
+				System.out.println("Gathering wood");
+				for(int i=0; i < 3; i++) {
+					System.out.print(".");
+					try {
+						TimeUnit.MILLISECONDS.sleep(600);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				
 				
 				int woodAmount = wood.gatherResource(wood,lumberjack.getTypePopulation());
 				int bonusWood = (woodAmount + lumberjack.getTypePopulation()/10)- woodAmount;
@@ -176,19 +176,19 @@ public class CivLifeDriver {
 			}
 			
 			//if the user wants to gather stone
-			else if(gatherAnswer.equals("2")) {
+			else if(gatherAnswer == 2) {
 				
 				System.out.println();
 				System.out.println("Gathering stone...");
 				System.out.println();
-				
-				try {
-					
-					TimeUnit.SECONDS.sleep(2);	
-				
-				} catch (InterruptedException e) {
-					
-					e.printStackTrace();
+				System.out.println("Gathering wood");
+				for(int i=0; i < 3; i++) {
+					System.out.print(".");
+					try {
+						TimeUnit.MILLISECONDS.sleep(600);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}	
 
 				int stoneAmount = stone.gatherResource(stone,miner.getTypePopulation());
@@ -209,19 +209,19 @@ public class CivLifeDriver {
 			}
 			
 			//if the user wants to gather food
-			else if(gatherAnswer.equals("3")) {
+			else if(gatherAnswer == 3) {
 				
 				System.out.println();
 				System.out.println("Finding and collecting food...");
 				System.out.println();
-				
-				try {
-					
-					TimeUnit.SECONDS.sleep(2);
-					
-				} catch (InterruptedException e) {
-					
-					e.printStackTrace();
+				System.out.println("Gathering wood");
+				for(int i=0; i < 3; i++) {
+					System.out.print(".");
+					try {
+						TimeUnit.MILLISECONDS.sleep(600);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}	
 				
 				int foodAmount = food.gatherResource(food,farmer.getTypePopulation());
