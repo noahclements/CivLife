@@ -179,9 +179,7 @@ public class CivLifeDriver {
 			else if(gatherAnswer == 2) {
 				
 				System.out.println();
-				System.out.println("Gathering stone...");
-				System.out.println();
-				System.out.println("Gathering wood");
+				System.out.println("Gathering stone");
 				for(int i=0; i < 3; i++) {
 					System.out.print(".");
 					try {
@@ -212,9 +210,7 @@ public class CivLifeDriver {
 			else if(gatherAnswer == 3) {
 				
 				System.out.println();
-				System.out.println("Finding and collecting food...");
-				System.out.println();
-				System.out.println("Gathering wood");
+				System.out.println("Finding and collecting food");
 				for(int i=0; i < 3; i++) {
 					System.out.print(".");
 					try {
