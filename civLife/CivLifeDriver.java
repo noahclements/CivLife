@@ -18,7 +18,7 @@ public class CivLifeDriver {
 	
 	private static int month = 0;
 	private static int year = 0;
-	
+	private static int gatherAnswer;
 	private static String civName = getUserName();
 	
 	private static Building hut = new Hut(250,250,"HUT",6,1);
@@ -125,18 +125,18 @@ public class CivLifeDriver {
 	public static void gatherResourceMenu() {
 			
 		Scanner gatherScan = new Scanner(System.in);
-		boolean properAnswer = false;
-		
+		gatherAnswer = 4;
 		//layout for gather resources menu
 		System.out.println("WHAT RESOURCE WOULD YOU LIKE TO GATHER?");
 		System.out.println("---------------------------------------");
 		System.out.println("(1) "+ wood.getResourceName());
 		System.out.println("(2) "+ stone.getResourceName());
 		System.out.println("(3) "+ food.getResourceName());
-	
-		while(!properAnswer) {
+		
+		
+		while(!(gatherAnswer == 1 || gatherAnswer == 2 || gatherAnswer == 3)) {
 			
-			int gatherAnswer = gatherScan.nextInt();
+			gatherAnswer = gatherScan.nextInt();
 			
 			//if user wants to gather wood
 			if(gatherAnswer == 1) {
@@ -159,7 +159,6 @@ public class CivLifeDriver {
 				System.out.println(civName +", wood has been gathered! You gained: " + woodAmount);
 				System.out.println("Having " + lumberjack.getTypePopulation() + " lumberjacks gave you a bonus "  + bonusWood + (" wood"));
 				System.out.println("Current amount of wood: " + wood.getResourceAmount());;
-				properAnswer = true;
 				
 				//updates the current month
 				month++;
@@ -191,7 +190,6 @@ public class CivLifeDriver {
 				System.out.println(civName +", stone has been successfully gathered! You gained: " + stoneAmount);
 				System.out.println("Having " + miner.getTypePopulation() + " miners gave you a bonus "  + bonusStone + (" stone"));
 				System.out.println("Current amount of stone: " + stone.getResourceAmount());
-				properAnswer = true;
 				
 				month++;
 				
@@ -222,7 +220,6 @@ public class CivLifeDriver {
 				System.out.println(civName +", food has been found and gathered! You gained: " + foodAmount);
 				System.out.println("Having " + farmer.getTypePopulation() + " farmers gave you a bonus "  + bonusFood + (" food"));
 				System.out.println("Current amount of food: " + food.getResourceAmount());
-				properAnswer = true;
 				
 				//updates the current month
 				month++;
